@@ -1,0 +1,26 @@
+<div class="row g-3 mb-3">
+    <div class="col-md-0">
+        <label class="form-label">Profile Image</label>
+        <input type="file" name="image" class="form-control">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">StudentID</label>
+        <input name="studentid" class="form-control" value="{{ student.studentid if student else '' }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Name</label>
+        <input name="name" class="form-control" value="{{ student.name if student else '' }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" value="{{ student.email if student else '' }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Program</label>
+        <input name="program" class="form-control" value="{{ student.program if student else '' }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Enrollment date</label>
+        <input name="enrollmentdate" type="date" class="form-control" value="{{ student.enrollmentdate if student else '' }}">
+    </div> 
+</div>
