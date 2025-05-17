@@ -1,0 +1,343 @@
+/* Custom styles for the student management system */
+
+/* General styling */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+body.container {
+    margin-top: 2rem !important;
+}
+
+/* Header styling */
+.page-header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.page-header h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Table styling */
+.table {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #343a40;
+    color: white;
+}
+
+.table thead th {
+    border-bottom: none;
+    font-weight: 500;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Compact table styling */
+.compact-table {
+    font-size: 0.875rem;
+}
+
+.compact-table thead th {
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+.compact-table tbody td {
+    padding: 0.4rem 0.5rem;
+    vertical-align: middle;
+}
+
+.compact-table .btn-sm {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+}
+
+/* Button styling */
+.btn {
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-info {
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: #31d2f2;
+    border-color: #25cff2;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-warning:hover {
+    background-color: #ffca2c;
+    border-color: #ffc720;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+    border-color: #146c43;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Modal styling */
+.modal-content {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+/* Profile image styling */
+.profile-image {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image-lg {
+    width: 100px;
+    height: 100px;
+}
+
+/* Form styling */
+.form-control {
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Alert styling */
+.alert {
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Badge styling */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+    border-radius: 0.25rem;
+}
+
+/* DataTables customization */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #0d6efd !important;
+    color: white !important;
+    border-color: #0d6efd !important;
+    border-radius: 0.25rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border-radius: .5rem;
+    background: #0b5ed7 !important;
+    color: white !important;
+    border-color: #0a58ca !important;
+    
+}
+
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ced4da;
+}
+
+/* DataTables specific styling */
+.dataTables_wrapper .dataTables_length, 
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_info, 
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.25rem 0.25rem;
+    font-size: 0.875rem;
+}
+
+/* Adjust the profile image size */
+.compact-table img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Make buttons in the table more compact and aligned */
+.compact-table .btn-group {
+    display: flex;
+    gap: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .table thead {
+        display: none;
+    }
+    
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* Spacing adjustments */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+    margin-bottom: 1rem !important;
+}

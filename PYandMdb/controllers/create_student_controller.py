@@ -1,5 +1,5 @@
 from flask import flash
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from models.students_model import add_student, get_all_students
 import re
 
@@ -52,10 +52,12 @@ def add_student_route():
     # If errors, re-render page with error messages
     if errors:
         students = get_all_students()
-        return render_template("index.html", students=students, errors=errors, student=data)
+        return render_template("index.html", students=students, errors=errors)
+
     
     # Add student to database
     add_student(data, image_file)
     flash("Student added successfully!","success" )
+    # Clear session errors
     # Redirect to main page after success
     return redirect(url_for("read_student.index"))

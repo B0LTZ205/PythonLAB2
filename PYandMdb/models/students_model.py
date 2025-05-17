@@ -1,7 +1,7 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING
+from flask import Flask, request, redirect, url_for, render_template, send_file 
 from bson.objectid import ObjectId
-from datetime import datetime
-import gridfs
+import gridfs, datetime
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
@@ -18,7 +18,7 @@ def get_student_by_id(student_id):
     return collection.find_one({"_id": ObjectId(student_id)})
 
 def add_student(data, image_file=None):
-    data["date_created"] = datetime.now()
+    data["date_created"] = datetime.datetime.now() 
     if image_file:
         image_id = fs.put(image_file, filename=image_file.filename, content_type=image_file.content_type)
         data["image_id"] = str(image_id)

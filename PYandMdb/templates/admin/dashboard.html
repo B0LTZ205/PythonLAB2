@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="col-auto">
+                <a href="{{ url_for('read_student.index') }}" class="btn btn-primary">Back to Students</a>
+            </div>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">User Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Manage users, roles, and permissions.</p>
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('admin.list_users') }}" class="btn btn-outline-primary">
+                                <i class="bi bi-people-fill me-2"></i>Manage Users
+                            </a>
+                            {% if session.role == 'superadmin' %}
+                            <a href="{{ url_for('admin.add_user_route') }}" class="btn btn-outline-success">
+                                <i class="bi bi-person-plus-fill me-2"></i>Add New User
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <small class="text-muted">Total Users: {{ users|length }}</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">Student Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Manage student records and information.</p>
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('read_student.index') }}" class="btn btn-outline-success">
+                                <i class="bi bi-mortarboard-fill me-2"></i>View Students
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <small class="text-muted">Student management tools</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">System Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Current User</h6>
+                                <p><strong>Username:</strong> {{ session.username }}</p>
+                                <p><strong>Role:</strong> {{ session.role }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>User Roles</h6>
+                                <ul>
+                                    <li><strong>User:</strong> Can view student information</li>
+                                    <li><strong>Admin:</strong> Can manage students and edit regular users</li>
+                                    <li><strong>Superadmin:</strong> Full system access including user management</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

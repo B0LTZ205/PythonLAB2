@@ -3,21 +3,46 @@
 <head>
     <title>Students</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="DataTables/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="container mt-5">
-    <h2 class="mb-4">Students List</h2>
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-    <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add Student</button>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Students List</h1>
+        <div>
+            {% if session.user_id %}
+                <h3><span class="me-2">Welcome, {{ session.username }} ({{ session.role }})</span></h3>
+                {% if session.role in ['admin', 'superadmin'] %}
+                    <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-info btn-sm me-2">Admin Dashboard</a>
+                {% endif %}
+                <a href="{{ url_for('auth.profile') }}" class="btn btn-primary btn-sm me-2">Profile</a>
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-danger btn-sm">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-sm me-2">Login</a>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-success btn-sm">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% if session.role in ['admin', 'superadmin'] %}
+        <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add Student</button>
+    {% endif %}
 <!-- Add Student Modal -->
 <div class="modal fade {% if errors and not student %}show{% endif %}" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel" aria-hidden="{% if errors and not student %}false{% else %}true{% endif %}" style="{% if errors and not student %}display:block; background:rgba(0,0,0,0.5);{% endif %}">
   <div class="modal-dialog modal-lg">
@@ -71,11 +96,13 @@
       <td>{{ student.email }}</td>
       <td>{{ student.program }}</td>
       <td>{{ student.enrollmentdate }}</td>
-      <td>
+    <td>
         <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#displayModal{{ student._id }}">Read</button>
-        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ student._id }}">Edit</button>
-        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ student._id }}">Delete</button>
-      </td>
+        {% if session.role in ['admin', 'superadmin'] %}
+            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ student._id }}">Edit</button>
+            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ student._id }}">Delete</button>
+        {% endif %}
+    </td>
     </tr>
 
     <!-- read Modal -->
@@ -191,6 +218,31 @@
     editModal.show();
     {% endif %}
   };
+  
+</script>
+<script>
+  $(document).ready(function() {
+    $('.table').DataTable({
+      "pageLength": 10,
+      "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+      "language": {
+        "search": "Search:",
+        "lengthMenu": "Show _MENU_ entries",
+        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+        "infoEmpty": "Showing 0 to 0 of 0 entries",
+        "infoFiltered": "(filtered from _MAX_ total entries)",
+        "paginate": {
+          "first": "First",
+          "last": "Last",
+          "next": "Next",
+          "previous": "Previous"
+        }
+      },
+      "columnDefs": [
+        { "orderable": false, "targets": [0, 6] } // Disable sorting on profile image and actions columns
+      ]
+    });
+  });
 </script>
 </body>
 </html>
